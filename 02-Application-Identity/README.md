@@ -103,3 +103,32 @@ Create and configure a Microsoft Entra App Registration to understand how applic
 - Managing Client Secrets
 - Reviewing Microsoft Graph Permissions
 - Applying Least Privilege
+---
+
+# Daily Contractor Tasks
+
+A Microsoft Entra Engineer working with Application Identity may be responsible for:
+
+- Reviewing new App Registration requests.
+- Creating App Registrations for internal applications.
+- Configuring Redirect URIs.
+- Creating and rotating Client Secrets.
+- Replacing Client Secrets with Certificates where appropriate.
+- Reviewing Microsoft Graph API permissions.
+- Applying the Principle of Least Privilege.
+- Reviewing Admin Consent requests.
+- Investigating failed application authentication.
+- Troubleshooting OAuth and OpenID Connect issues.
+- Reviewing Audit Logs for application changes.
+- Supporting application onboarding to Microsoft Entra ID.
+- Producing technical documentation.
+- Supporting CAB (Change Advisory Board) reviews.
+- Advising developers on secure authentication design.
+
+---
+
+# Business Value
+
+Application Identity enables organisations to securely integrate internal and third-party applications with Microsoft Entra ID while maintaining strong authentication, authorisation and governance controls.
+
+Correct implementation reduces security risk, supports Zero Trust principles and improves operational efficiency.
