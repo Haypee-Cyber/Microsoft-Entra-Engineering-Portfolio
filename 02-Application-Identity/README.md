@@ -132,3 +132,64 @@ A Microsoft Entra Engineer working with Application Identity may be responsible 
 Application Identity enables organisations to securely integrate internal and third-party applications with Microsoft Entra ID while maintaining strong authentication, authorisation and governance controls.
 
 Correct implementation reduces security risk, supports Zero Trust principles and improves operational efficiency.
+---
+
+# Enterprise Scenario
+
+## Scenario
+
+A software vendor requests the following Microsoft Graph permissions for a new HR application:
+
+- User.Read
+- User.Read.All
+- Directory.ReadWrite.All
+
+Business justification provided:
+
+> "The application only needs to display the signed-in user's profile."
+
+---
+
+## Security Assessment
+
+### User.Read
+
+✅ Approved
+
+Reason:
+
+- Meets the stated business requirement.
+- Allows the application to read only the signed-in user's profile.
+- Follows the Principle of Least Privilege.
+
+---
+
+### User.Read.All
+
+⚠️ Not approved immediately.
+
+Reason:
+
+- Grants access to every user's profile.
+- Exceeds the stated business requirement.
+- Additional technical and business justification required.
+
+---
+
+### Directory.ReadWrite.All
+
+❌ Not approved.
+
+Reason:
+
+- Provides highly privileged access to the Microsoft Entra directory.
+- No evidence that write access is required.
+- Represents unnecessary risk if compromised.
+
+---
+
+## Recommendation
+
+Approve only **User.Read**.
+
+Request further justification for any additional permissions before approval.
