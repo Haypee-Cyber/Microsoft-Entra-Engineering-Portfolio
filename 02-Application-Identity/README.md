@@ -344,3 +344,31 @@ The following screenshots demonstrate the successful implementation of Applicati
 | Token Configuration | See `images/token-configuration.png` |
 | Expose an API | See `images/expose-api.png` |
 | Manifest | See `images/manifest.png` |
+# Security Review
+
+## Security Principles
+
+Application Identity should be implemented in accordance with the following principles:
+
+- Least Privilege
+- Zero Trust
+- Secure by Default
+- Defence in Depth
+
+## Security Controls
+
+- Use Certificates where appropriate instead of long-lived Client Secrets.
+- Configure only trusted Redirect URIs.
+- Review Microsoft Graph permissions regularly.
+- Enable audit logging.
+- Rotate credentials regularly.
+- Review Admin Consent before approval.
+
+## Risks
+
+| Risk | Mitigation |
+|------|------------|
+| Excessive API permissions | Apply Least Privilege |
+| Client Secret compromise | Rotate secrets and prefer Certificates |
+| Redirect URI misuse | Configure only approved domains |
+| Unauthorised Admin Consent | Governance and approval workflow |
