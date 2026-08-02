@@ -264,3 +264,84 @@ Determine whether:
 ## Outcome
 
 If the changes are not supported by an approved business requirement, treat the activity as potentially suspicious, revoke unnecessary permissions, rotate exposed secrets if required, and escalate according to the organisation's incident response process.
+---
+
+# Common Misconfigurations
+
+## 1. Excessive Microsoft Graph Permissions
+
+### Problem
+
+Applications request more Microsoft Graph permissions than required.
+
+### Risk
+
+Violates the Principle of Least Privilege and increases the impact if the application is compromised.
+
+### Recommendation
+
+Approve only the minimum permissions required to meet the business requirement.
+
+---
+
+## 2. Redirect URI Misconfiguration
+
+### Problem
+
+Redirect URI points to an incorrect or untrusted domain.
+
+### Risk
+
+May allow authentication responses to be redirected to an unintended location.
+
+### Recommendation
+
+Only configure Redirect URIs that belong to trusted and approved domains.
+
+---
+
+## 3. Long-Lived Client Secrets
+
+### Problem
+
+Client Secrets are created with unnecessarily long expiry periods.
+
+### Risk
+
+If exposed, the secret remains valid for an extended period, increasing organisational risk.
+
+### Recommendation
+
+Use the shortest practical lifetime and rotate secrets regularly. Where possible, use Certificates instead of Client Secrets.
+
+---
+
+## 4. Overuse of Directory.ReadWrite.All
+
+### Problem
+
+Applications request Directory.ReadWrite.All without a valid business requirement.
+
+### Risk
+
+Provides highly privileged access to Microsoft Entra ID.
+
+### Recommendation
+
+Challenge the requirement and approve only if a documented business need exists.
+
+---
+
+## 5. Failure to Review Admin Consent
+
+### Problem
+
+Admin Consent is granted without verifying the application's purpose or requested permissions.
+
+### Risk
+
+Applications may receive unnecessary access to organisational data.
+
+### Recommendation
+
+Always validate the business justification, publisher, requested permissions and apply the Principle of Least Privilege.
