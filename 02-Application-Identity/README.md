@@ -331,3 +331,16 @@ Applications may receive unnecessary access to organisational data.
 ### Recommendation
 
 Always validate the business justification, publisher, requested permissions and apply the Principle of Least Privilege.
+# Implementation Evidence
+
+The following screenshots demonstrate the successful implementation of Application Identity within the Microsoft Entra home lab.
+
+| Configuration | Evidence |
+|---------------|----------|
+| App Registration | See `images/app-registration-overview.png` |
+| Authentication | See `images/authentication.png` |
+| Client Secret | See `images/certificates-and-secrets.png` |
+| API Permissions | See `images/api-permissions.png` |
+| Token Configuration | See `images/token-configuration.png` |
+| Expose an API | See `images/expose-api.png` |
+| Manifest | See `images/manifest.png` |
