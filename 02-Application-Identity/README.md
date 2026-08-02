@@ -372,3 +372,43 @@ Application Identity should be implemented in accordance with the following prin
 | Client Secret compromise | Rotate secrets and prefer Certificates |
 | Redirect URI misuse | Configure only approved domains |
 | Unauthorised Admin Consent | Governance and approval workflow |
+# Governance
+
+## Governance Objectives
+
+Application Identity should be governed throughout its lifecycle to ensure secure, compliant and auditable access to organisational resources.
+
+## Governance Activities
+
+- Review all new App Registration requests.
+- Validate business justification before implementation.
+- Apply the Principle of Least Privilege.
+- Review and approve Microsoft Graph permissions.
+- Review Admin Consent requests.
+- Define application ownership.
+- Review application permissions periodically.
+- Rotate Client Secrets in accordance with organisational policy.
+- Remove unused App Registrations.
+- Maintain implementation documentation.
+
+## Change Management
+
+Any of the following changes should follow the organisation's change management process:
+
+- New App Registration
+- Redirect URI changes
+- Client Secret creation or renewal
+- Certificate replacement
+- API permission changes
+- Admin Consent approval
+
+## Governance Checklist
+
+| Activity | Status |
+|----------|--------|
+| Business justification reviewed | ✓ |
+| Least Privilege applied | ✓ |
+| Application owner identified | ✓ |
+| Security review completed | ✓ |
+| Change approved | ✓ |
+| Documentation updated | ✓ |
