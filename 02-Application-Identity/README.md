@@ -41,3 +41,36 @@ These identities enable secure authentication using Client Secrets or Certificat
 - Least Privilege
 - OAuth 2.0
 - OpenID Connect
+---
+
+# Architecture
+
+## Components
+
+Application Identity consists of:
+
+- App Registration
+- Enterprise Application (Service Principal)
+- Microsoft Entra ID
+- Microsoft Graph
+- OAuth 2.0 / OpenID Connect
+- Client Secret or Certificate
+
+---
+
+## Authentication Flow
+
+```text
+Application
+      │
+      │ Requests authentication
+      ▼
+Microsoft Entra ID
+      │
+      │ Verifies identity
+      ▼
+Issues ID Token / Access Token
+      │
+      ▼
+Application gains access to Microsoft Graph
+```
