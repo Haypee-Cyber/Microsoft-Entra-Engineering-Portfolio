@@ -1,10 +1,11 @@
 # Application Identity
+# Executive Summary
 
-## Executive Summary
+Application Identity enables applications to securely authenticate with Microsoft Entra ID and access protected Microsoft resources such as Microsoft Graph, Exchange Online, SharePoint Online and Microsoft Teams.
 
-Application Identity is the process of creating and managing an application's identity in Microsoft Entra ID.
+Microsoft Entra App Registrations provide each application with a unique identity, enabling secure authentication, authorisation and lifecycle management. Correct implementation supports Zero Trust principles by enforcing strong authentication, least privilege and controlled access to organisational resources.
 
-An App Registration enables Microsoft Entra to uniquely identify an application, authenticate it, and authorise it to access protected Microsoft resources securely.
+Application Identity is a core capability for Microsoft Entra Engineers responsible for enterprise application integration, governance, security and operational support.
 
 ---
 
