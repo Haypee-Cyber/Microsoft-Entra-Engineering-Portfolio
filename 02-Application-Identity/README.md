@@ -412,3 +412,29 @@ Any of the following changes should follow the organisation's change management 
 | Security review completed | ✓ |
 | Change approved | ✓ |
 | Documentation updated | ✓ |
+# Troubleshooting
+
+## Common Issues
+
+| Issue | Possible Cause | Resolution |
+|------|----------------|------------|
+| Application sign-in fails | Incorrect Redirect URI | Verify the Redirect URI matches the application configuration. |
+| Invalid client secret | Expired or incorrect Client Secret | Generate a new Client Secret and update the application. |
+| Access denied to Microsoft Graph | Missing API permissions or Admin Consent | Review API permissions and grant Admin Consent where appropriate. |
+| Users unable to sign in | Incorrect supported account type | Verify the App Registration account type configuration. |
+| Authentication succeeds but API calls fail | Insufficient Microsoft Graph permissions | Review delegated or application permissions and apply Least Privilege. |
+| Application authentication suddenly stops | Certificate or Client Secret expired | Replace the expired credential and validate authentication. |
+
+## Investigation Checklist
+
+When investigating an Application Identity issue:
+
+- Review Microsoft Entra Audit Logs.
+- Review Sign-in Logs.
+- Verify the App Registration configuration.
+- Review Redirect URI configuration.
+- Validate API permissions.
+- Confirm Admin Consent status.
+- Verify Client Secret or Certificate validity.
+- Confirm the application owner.
+- Review recent configuration changes.
