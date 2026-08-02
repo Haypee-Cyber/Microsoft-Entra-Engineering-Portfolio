@@ -105,50 +105,6 @@ Create and configure a Microsoft Entra App Registration to understand how applic
 - Applying Least Privilege
 ---
 
-# Daily Contractor Tasks
-
-A Microsoft Entra Engineer working with Application Identity may be responsible for:
-
-- Reviewing new App Registration requests.
-- Creating App Registrations for internal applications.
-- Configuring Redirect URIs.
-- Creating and rotating Client Secrets.
-- Replacing Client Secrets with Certificates where appropriate.
-- Reviewing Microsoft Graph API permissions.
-- Applying the Principle of Least Privilege.
-- Reviewing Admin Consent requests.
-- Investigating failed application authentication.
-- Troubleshooting OAuth and OpenID Connect issues.
-- Reviewing Audit Logs for application changes.
-- Supporting application onboarding to Microsoft Entra ID.
-- Producing technical documentation.
-- Supporting CAB (Change Advisory Board) reviews.
-- Advising developers on secure authentication design.
-
----
-
-# Business Value
-
-Application Identity enables organisations to securely integrate internal and third-party applications with Microsoft Entra ID while maintaining strong authentication, authorisation and governance controls.
-
-Correct implementation reduces security risk, supports Zero Trust principles and improves operational efficiency.
----
-
-# Enterprise Scenario
-
-## Scenario
-
-A software vendor requests the following Microsoft Graph permissions for a new HR application:
-
-- User.Read
-- User.Read.All
-- Directory.ReadWrite.All
-
-Business justification provided:
-
-> "The application only needs to display the signed-in user's profile."
-
----
 
 ## Security Assessment
 
@@ -163,7 +119,40 @@ Reason:
 - Follows the Principle of Least Privilege.
 
 ---
+# Operational Responsibilities
 
+A Microsoft Entra Engineer responsible for Application Identity may perform the following activities:
+
+## Application Onboarding
+
+- Create App Registrations.
+- Configure Redirect URIs.
+- Configure authentication settings.
+- Configure API permissions.
+- Configure Client Secrets or Certificates.
+
+## Governance
+
+- Review Microsoft Graph permissions.
+- Apply the Principle of Least Privilege.
+- Review Admin Consent requests.
+- Assess business justification for privileged permissions.
+- Participate in Change Advisory Board (CAB) reviews.
+
+## Security
+
+- Rotate Client Secrets.
+- Replace Client Secrets with Certificates where appropriate.
+- Review Microsoft Entra Audit Logs.
+- Investigate suspicious application changes.
+- Review authentication failures.
+
+## Operations
+
+- Troubleshoot application authentication.
+- Support developers integrating Microsoft Entra ID.
+- Maintain implementation documentation.
+- Review application lifecycle and ownership.
 ### User.Read.All
 
 ⚠️ Not approved immediately.
