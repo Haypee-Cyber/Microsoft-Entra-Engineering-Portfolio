@@ -9,12 +9,13 @@ Application Identity is a core capability for Microsoft Entra Engineers responsi
 
 ---
 
-## Business Problem
+# Business Requirement
 
-Modern enterprise applications require secure access to Microsoft 365 services such as Microsoft Graph, Exchange Online, SharePoint Online and Teams.
+Modern organisations use hundreds or thousands of internal and third-party applications that require secure access to Microsoft services and organisational data.
 
-Without a trusted identity, applications cannot securely authenticate or request permissions.
+Without a central identity platform, applications may use inconsistent authentication methods, excessive permissions and unmanaged credentials, increasing the risk of unauthorised access and security breaches.
 
+Microsoft Entra ID provides a centralised identity platform that enables organisations to securely register, authenticate, authorise and govern applications throughout their lifecycle.
 ---
 
 ## Technical Solution
