@@ -438,3 +438,12 @@ When investigating an Application Identity issue:
 - Verify Client Secret or Certificate validity.
 - Confirm the application owner.
 - Review recent configuration changes.
+# Lessons Learned
+
+- Every application requires a unique identity before it can authenticate with Microsoft Entra ID.
+- Redirect URIs are a security control and should only reference trusted endpoints.
+- Client Secrets should be treated as sensitive credentials and rotated regularly.
+- Certificates are generally preferred over long-lived Client Secrets for production environments.
+- Microsoft Graph permissions should always follow the Principle of Least Privilege.
+- App Registration changes should be governed through change management and documented.
+- Audit Logs and Sign-in Logs are essential when investigating Application Identity incidents.
