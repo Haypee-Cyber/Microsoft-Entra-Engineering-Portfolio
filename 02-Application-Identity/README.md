@@ -193,3 +193,74 @@ Reason:
 Approve only **User.Read**.
 
 Request further justification for any additional permissions before approval.
+---
+
+# SOC Investigation Scenario
+
+## Alert
+
+A Microsoft Entra audit log generates the following events:
+
+- A new Client Secret was created.
+- A new Redirect URI was added.
+- Directory.ReadWrite.All permission was granted.
+
+---
+
+## Investigation Process
+
+### 1. Review Audit Logs
+
+Identify:
+
+- Who performed the changes.
+- When the changes occurred.
+- Which application was modified.
+
+---
+
+### 2. Review Sign-in Logs
+
+Verify:
+
+- Source IP Address
+- Geographic location
+- Device information
+- User authentication method
+
+---
+
+### 3. Validate User Privileges
+
+Determine:
+
+- Was the user authorised to make the changes?
+- Was Privileged Identity Management (PIM) used?
+- Was the role activated legitimately?
+
+---
+
+### 4. Review Change Management
+
+Confirm:
+
+- CAB approval
+- RFC or Change Request
+- Business justification
+- Expected maintenance window
+
+---
+
+### 5. Assess Risk
+
+Determine whether:
+
+- The Redirect URI points to a trusted domain.
+- The Client Secret creation was expected.
+- The granted permissions follow the Principle of Least Privilege.
+
+---
+
+## Outcome
+
+If the changes are not supported by an approved business requirement, treat the activity as potentially suspicious, revoke unnecessary permissions, rotate exposed secrets if required, and escalate according to the organisation's incident response process.
