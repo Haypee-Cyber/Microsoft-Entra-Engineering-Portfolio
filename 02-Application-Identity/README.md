@@ -447,3 +447,11 @@ When investigating an Application Identity issue:
 - Microsoft Graph permissions should always follow the Principle of Least Privilege.
 - App Registration changes should be governed through change management and documented.
 - Audit Logs and Sign-in Logs are essential when investigating Application Identity incidents.
+# References
+
+- Microsoft Entra ID documentation
+- Microsoft Graph documentation
+- OAuth 2.0 Authorization Framework (RFC 6749)
+- OpenID Connect Core Specification
+- Microsoft Identity Platform documentation
+- Zero Trust Security Model
