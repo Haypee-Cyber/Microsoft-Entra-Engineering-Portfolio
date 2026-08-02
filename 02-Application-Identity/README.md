@@ -18,18 +18,13 @@ Without a central identity platform, applications may use inconsistent authentic
 Microsoft Entra ID provides a centralised identity platform that enables organisations to securely register, authenticate, authorise and govern applications throughout their lifecycle.
 ---
 
-## Technical Solution
+# Microsoft Solution
 
-Microsoft Entra ID provides App Registrations which create an identity for applications.
+Microsoft Entra ID provides App Registrations to establish a trusted identity for applications.
 
-Each App Registration receives:
+Each App Registration receives a globally unique Application (Client) ID and is associated with a Microsoft Entra tenant. The application can then authenticate using a Client Secret, Certificate or Managed Identity and request access to protected resources through Microsoft Graph or other APIs.
 
-- Application (Client) ID
-- Object ID
-- Directory (Tenant) ID
-
-These identities enable secure authentication using Client Secrets or Certificates together with Microsoft Entra authentication.
-
+Application permissions, Redirect URIs, authentication settings and token configuration are centrally managed to support secure application integration and governance.
 ---
 
 ## Skills Demonstrated
