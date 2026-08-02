@@ -74,3 +74,32 @@ Issues ID Token / Access Token
       ▼
 Application gains access to Microsoft Graph
 ```
+---
+
+# Home Lab Implementation
+
+## Objective
+
+Create and configure a Microsoft Entra App Registration to understand how applications authenticate and securely access Microsoft resources.
+
+## Lab Activities Completed
+
+- Created an App Registration
+- Reviewed Application (Client) ID
+- Reviewed Object ID
+- Reviewed Directory (Tenant) ID
+- Configured Redirect URI
+- Created a Client Secret
+- Reviewed API Permissions
+- Reviewed Token Configuration
+- Reviewed Expose an API
+- Reviewed Manifest
+
+## Skills Gained
+
+- Creating App Registrations
+- Understanding Application Identity
+- Configuring Redirect URIs
+- Managing Client Secrets
+- Reviewing Microsoft Graph Permissions
+- Applying Least Privilege
