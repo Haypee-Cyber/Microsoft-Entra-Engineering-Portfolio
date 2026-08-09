@@ -101,3 +101,109 @@ Before granting Admin Consent:
 6. Confirm the appropriate approval/change process has been followed.
 
 Permissions such as `Directory.ReadWrite.All` require additional scrutiny because compromise of the application could expose or allow modification of directory resources.
+---
+
+## Monitoring and Troubleshooting
+
+### Microsoft Entra Logs
+
+| Log | Primary Use |
+|---|---|
+| Sign-in Logs | Investigate authentication attempts, failures and Conditional Access results |
+| Audit Logs | Identify configuration changes, who performed them and when |
+| Provisioning Logs | Investigate automated user provisioning and deprovisioning |
+
+### Troubleshooting Principle
+
+The scope of an issue helps determine the investigation path:
+
+| Impact | Initial Investigation |
+|---|---|
+| Single user | User assignment, group membership, attributes and sign-in logs |
+| Small group of users | Group assignment, policies and shared user attributes |
+| All users | SSO configuration, certificates, Enterprise Application configuration and service health |
+
+---
+
+## Production Incident 1 – SAML SSO Outage
+
+### Incident
+
+Approximately 200 developers were unable to access GitHub Enterprise Cloud through SSO following a configuration change.
+
+### Investigation
+
+1. Reviewed Microsoft Entra Audit Logs.
+2. Identified a change to the SAML Basic Configuration.
+3. Confirmed that the Reply URL (ACS URL) had been modified.
+4. Compared the new value against the expected GitHub ACS URL.
+5. Confirmed that the previous Reply URL was correct.
+
+### Root Cause
+
+An incorrect Reply URL was entered during an approved configuration change.
+
+### Resolution
+
+The validated Reply URL was restored and SSO was tested successfully.
+
+### Evidence
+
+- Audit Log showing the SAML configuration change
+- Corrected SAML configuration
+- Successful post-change Sign-in Logs
+- User confirmation of restored GitHub access
+
+### Preventive Controls
+
+- Peer review SAML configuration changes before implementation.
+- Perform SSO validation immediately after changes.
+- Maintain appropriate change and rollback procedures.
+
+---
+
+## Production Incident 2 – Excessive Application Permission
+
+### Incident
+
+An unknown third-party application was discovered with `Directory.ReadWrite.All` and no documented business justification.
+
+### Investigation
+
+The investigation should establish:
+
+- Application and publisher identity
+- Application owner
+- Permission type
+- Administrator who granted consent
+- Time of consent
+- Related Audit Log activity
+- Service Principal sign-in activity
+- Directory objects accessed or modified
+
+### Containment
+
+Where activity is confirmed as unauthorised:
+
+1. Contain the compromised administrator identity.
+2. Disable the malicious or compromised service principal where appropriate.
+3. Revoke unauthorised permissions and consent.
+4. Revoke affected sessions and credentials as required.
+5. Investigate directory changes made while the permission was available.
+
+### Security Principle
+
+Application identities must be treated as security principals. Disabling a compromised administrator does not automatically stop an application operating with previously granted Application permissions.
+
+---
+
+## Lessons Learned
+
+- Enterprise Applications represent service principals within the tenant.
+- App Registrations primarily define application identity and authentication configuration, while Enterprise Applications manage how the application operates within the tenant.
+- Group-based assignment provides more scalable access management than individual assignments.
+- SAML configuration requires a valid trust relationship between the Identity Provider and Service Provider.
+- SCIM supports automated Joiner-Mover-Leaver identity lifecycle management.
+- High-privilege API permissions require business justification and least-privilege review.
+- Sign-in, Audit and Provisioning logs provide different evidence and should be selected according to the incident being investigated.
+- Troubleshooting should begin with evidence and the scope of impact rather than assumptions.
