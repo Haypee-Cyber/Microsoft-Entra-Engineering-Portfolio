@@ -4,7 +4,7 @@
 
 This project demonstrates the implementation, security, governance and troubleshooting of Enterprise Applications in Microsoft Entra ID.
 
-The lab covers application onboarding, SAML-based Single Sign-On, user and group assignment, SCIM provisioning, application permissions, monitoring and investigation of common Enterprise Application incidents.
+The lab covers application onboarding, SAML-based Single Sign-On, user and group assignment, application permissions, monitoring and investigation of common Enterprise Application incidents. SCIM provisioning is also examined as an identity lifecycle management capability.
 
 ## Business Scenario
 
@@ -67,7 +67,9 @@ This approach provides:
 
 ### 4. SCIM Provisioning
 
-SCIM provisioning can automate the identity lifecycle between Microsoft Entra ID and supported SaaS applications.
+SCIM provisioning was reviewed as part of the Enterprise Application identity lifecycle design. It was not configured end-to-end during this lab.
+
+SCIM can automate identity lifecycle management between Microsoft Entra ID and supported SaaS applications.
 
 The provisioning lifecycle includes:
 
@@ -85,7 +87,7 @@ Typical attributes exchanged during provisioning include:
 - Family name
 - Email address
 
-Provisioning logs should be reviewed when automated account creation, updates or deprovisioning fail.
+In a production environment, Provisioning Logs would be reviewed when automated account creation, updates or deprovisioning fail.
 
 ### 5. Permissions and Admin Consent
 
@@ -125,8 +127,8 @@ The scope of an issue helps determine the investigation path:
 
 ---
 
-## Production Incident 1 – SAML SSO Outage
-
+## Scenario 1 – SAML SSO Outage
+> **Scenario:** The following simulated production incident demonstrates a structured approach to investigating and resolving a SAML SSO configuration failure.
 ### Incident
 
 Approximately 200 developers were unable to access GitHub Enterprise Cloud through SSO following a configuration change.
@@ -162,12 +164,12 @@ The validated Reply URL was restored and SSO was tested successfully.
 
 ---
 
-## Production Incident 2 – Excessive Application Permission
+## Scenario 2 – Excessive Application Permission
 
 ### Incident
 
 An unknown third-party application was discovered with `Directory.ReadWrite.All` and no documented business justification.
-
+> **Scenario:** The following simulated security incident demonstrates an investigation and containment approach for an application holding excessive Microsoft Entra ID permissions.
 ### Investigation
 
 The investigation should establish:
