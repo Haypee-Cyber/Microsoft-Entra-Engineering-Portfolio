@@ -145,22 +145,167 @@ The final test confirmed that the user, target resource and external network con
 
 The design provides a Zero Trust approach in which access is evaluated dynamically based on identity, resource, network context and authentication strength rather than assuming that a successful username and password authentication is sufficient.
 
+---
 
+## 9. Emergency Access and Conditional Access Resilience
 
+The Conditional Access design was extended to address the risk of administrative lockout.
 
+A dedicated emergency access account, **Emergency Access 01**, was configured to provide a recovery path if normal administrative access becomes unavailable because of authentication failure, Conditional Access misconfiguration, or another identity access issue.
 
+The account was deliberately separated from normal user access so that emergency recovery would not depend entirely on the same controls it may be required to recover.
 
+### Evidence
+<img width="1912" height="954" alt="M6-ADV-01-Emergency-Access-Account" src="https://github.com/user-attachments/assets/4b7988c0-5453-4a14-bf05-94161e51feb5" />
 
+---
 
+## 10. Emergency Access Administrative Privilege
 
+The emergency access account was assigned the **Global Administrator** role to ensure that it could be used to recover administrative access during a tenant-wide identity or Conditional Access failure.
 
+This privilege gives the recovery identity sufficient authority to investigate and correct configurations that could otherwise prevent administrators from accessing the tenant.
 
+Because of the sensitivity of the role, the account is intended strictly for emergency recovery rather than routine administrative activity.
 
+### Evidence
 
+<img width="1911" height="951" alt="M6-ADV-02-Emergency-Access-Global-Administrator-Role" src="https://github.com/user-attachments/assets/a08502d4-e955-4efd-b068-28ea695179d5" />
 
+---
 
+## 11. Emergency Access Conditional Access Exclusion
 
+The Conditional Access configuration was updated to explicitly exclude **Emergency Access 01** from the policy protecting access outside the trusted corporate network.
 
+This exclusion provides a controlled recovery path if the policy is misconfigured or if normal administrators are unable to satisfy its authentication requirements.
+
+The exclusion was deliberately limited to the dedicated emergency identity rather than weakening the policy for standard users.
+
+### Evidence
+<img width="1905" height="941" alt="M6-ADV-03-Emergency-Access-Conditional-Access-Exclusion" src="https://github.com/user-attachments/assets/2caaf4df-5bfc-481d-adf1-8d962aefb60c" />
+
+---
+
+## 12. Emergency Access Conditional Access Validation
+
+The emergency access configuration was validated using Microsoft Entra sign-in logs to confirm how Conditional Access evaluated the recovery identity during authentication.
+
+The Conditional Access details showed that policies targeting other users did not apply to **Emergency Access 01**, while applicable tenant-wide controls were evaluated independently.
+
+This validation confirmed that Conditional Access decisions could be traced to individual policy assignments and provided evidence that the emergency access design behaved as expected during an actual sign-in.
+
+### Evidence
+
+<img width="1915" height="955" alt="M6-ADV-08-Conditional-Access-Multiple-Policy-Evaluation" src="https://github.com/user-attachments/assets/afc00f93-54ec-411b-a4d3-ce2e7edab991" />
+
+---
+
+## 13. Detailed Conditional Access Policy Decision Analysis
+
+Individual Conditional Access policy results were examined to determine why specific controls were applied or skipped during authentication.
+
+The policy details exposed the evaluation of the user assignment and target resource, allowing the policy decision to be traced back to its configured scope.
+
+This demonstrated an important troubleshooting capability: a policy appearing in the Conditional Access evaluation does not necessarily mean that it controlled the sign-in. The underlying assignment and condition results must be examined to determine why the policy was applied or excluded.
+
+### Evidence
+<img width="1909" height="946" alt="M6-ADV-09-Conditional-Access-Not-Applied-User-Scope-Mismatch" src="https://github.com/user-attachments/assets/d7ecc053-c415-4ee5-8c46-f1d9b1ca371a" />
+---
+
+## 14. Conditional Access What If Simulation
+
+The Microsoft Entra **What If** tool was used to simulate Conditional Access evaluation before relying on live authentication testing.
+
+The simulation reproduced a defined sign-in scenario using the selected identity, application, Windows device platform, browser client, source IP address and geographic location.
+
+The results identified which Conditional Access policies would apply and, importantly, which policies would not apply together with the reason for exclusion.
+
+This provided a controlled method of validating policy scope and troubleshooting unexpected Conditional Access behaviour without changing the production-style policy configuration.
+
+### Evidence
+<img width="1652" height="902" alt="M6-Emergency-Access-WhatIf-Validation" src="https://github.com/user-attachments/assets/b9d3ca7f-1a42-4f4a-aa13-8c7580c75971" />
+---
+
+## 15. Authentication Method Policy Scope Investigation
+
+The emergency access account was reviewed to determine whether phishing-resistant Passkey (FIDO2) authentication was available for registration.
+
+Although Passkey (FIDO2) was enabled in the tenant, the method was scoped only to the **GRP-Passwordless-Pilot** group. The emergency access account was not a member of this group and therefore was not initially eligible to register a passkey.
+
+This demonstrated that enabling an authentication method at tenant level does not automatically make it available to every user. Authentication method policy targeting must also include the identity.
+
+### Evidence
+<img width="1910" height="912" alt="M6-ADV-04-Emergency-Account-Not-In-Passkey-Pilot-Group" src="https://github.com/user-attachments/assets/cb0ed99e-bfc6-4e3c-b7e2-f9ad85dfdf2a" />
+
+---
+
+## 16. Authentication Method Scope Validation
+
+To validate the identified policy-scoping issue, **Emergency Access 01** was temporarily added to the **GRP-Passwordless-Pilot** group.
+
+This placed the account within scope of the Passkey (FIDO2) authentication method policy and provided a controlled test of whether group membership was responsible for the method's availability.
+
+### Evidence
+<img width="1899" height="918" alt="M6-ADV-05-Emergency-Account-Added-To-Passkey-Pilot-Group" src="https://github.com/user-attachments/assets/6958e6db-1031-4817-821d-1acbe3a89c50" />
+
+---
+
+## 17. Passkey Eligibility Validation
+
+After the emergency account was added to the passwordless pilot group, its Security Info registration options were reviewed again.
+
+Passkey registration was now available to **Emergency Access 01**, confirming that the earlier registration limitation was caused by Authentication Methods policy targeting rather than a technical failure with the account.
+
+This validated the relationship between authentication method policy scope, group membership and end-user registration capability.
+
+### Evidence
+<img width="1520" height="873" alt="M6-ADV-06-Emergency-Account-Passkey-Eligibility-Validated" src="https://github.com/user-attachments/assets/91943653-e063-4ca7-a2af-979239394ce6" />
+---
+
+## 18. Restore Emergency Access Separation
+
+After validating the Passkey policy scope, **Emergency Access 01** was removed from the **GRP-Passwordless-Pilot** group.
+
+This restored the intended separation between the passwordless pilot population and the emergency recovery identity.
+
+The temporary scope change was therefore used only to validate the root cause and was removed once testing was complete, demonstrating controlled change and rollback rather than leaving unnecessary access in place.
+
+### Evidence
+<img width="1912" height="949" alt="M6-ADV-07-Emergency-Account-Removed-From-Passkey-Pilot-Group" src="https://github.com/user-attachments/assets/a160d6b8-db92-4158-a943-cd1922602a86" />
+
+---
+
+## 19. Engineering Outcome and Contractor Takeaways
+
+The advanced Conditional Access exercise extended the original location-based security implementation into a more resilient enterprise access design.
+
+The work demonstrated:
+
+- Design and configuration of a dedicated emergency access identity
+- Assignment of sufficient administrative privilege for tenant recovery
+- Conditional Access exclusions to reduce the risk of administrative lockout
+- Validation of policy behaviour using live sign-in telemetry
+- Conditional Access troubleshooting using individual policy evaluation results
+- Pre-deployment policy analysis using the What If simulator
+- Investigation of Authentication Methods policy scope
+- Troubleshooting Passkey eligibility through group-based policy targeting
+- Controlled testing of configuration changes
+- Rollback of temporary access changes after successful validation
+
+A key engineering lesson from the exercise was that Conditional Access configuration should not be considered complete simply because a policy has been created.
+
+Effective identity security requires policy scoping, safe deployment, emergency access planning, runtime validation, troubleshooting and a tested recovery path.
+
+The exercise also demonstrated the distinction between **Conditional Access policy scope** and **Authentication Methods policy scope**. An identity can be excluded from a Conditional Access policy while still being independently included or excluded from authentication method availability.
+
+Overall, the implementation demonstrates a Zero Trust approach in which access controls are validated against real authentication behaviour while maintaining operational resilience and administrative recovery capability.
+
+---
+
+## Module Status
+
+**Completed**
 
 
 
