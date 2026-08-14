@@ -303,9 +303,7 @@ Overall, the implementation demonstrates a Zero Trust approach in which access c
 
 ---
 
-## Module Status
 
-**Completed**
 
 
 
